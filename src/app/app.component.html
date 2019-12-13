@@ -1,1 +1,41 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home">
+      <img src="../assets/user-login-comfirm-accept-person-id-512.png" width="50" height="50"
+        class="d-inline-block align-center" alt="">
+      MyApp
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <ng-container *ngIf="!authService.loggedIn(); else loggedInTemp">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/signin" routerLinkActive="active">SignIn</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/signup" routerLinkActive="active">SignUp</a>
+          </li>
+        </ng-container>
+        <ng-template #loggedInTemp>
+          <li class="nav-item">
+            <a class="nav-link" (click)="authService.logout()" style="cursor: pointer;">Logout</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container p-5">
+  <router-outlet></router-outlet>
+</div>
