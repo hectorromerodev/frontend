@@ -1,1 +1,10 @@
-<p>home works!</p>
+<div class="container">
+  <ng-container *ngIf="!authService.loggedIn(); else username">
+    <h1>Welcome</h1>
+    <h3>You need to SignIn, to see your name here.</h3>
+  </ng-container>
+  <ng-template #username>
+    <h1>Welcome Back,</h1>
+    <h2 style="text-transform: uppercase;">{{users.name}}</h2>
+  </ng-template>
+</div>
